@@ -25,6 +25,11 @@ export default function TextForm(props) {
         props.showAlert("Converted to sentence case!", "success");
     }
 
+    const handleCopy = () => {
+      navigator.clipboard.writeText(text); 
+      props.showAlert("Copied to Clipboard!", "success");
+    }
+
     const handleExtraSpaces=()=>{
         let newText=text.split(/[ ]+/);
         setText(newText.join(" "))
@@ -56,6 +61,9 @@ export default function TextForm(props) {
       <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleExtraSpaces}>
         Remove extra spaces
       </button>
+      <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopy}>
+        Copy Text
+        </button>
       <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleClear}>
         Clear
       </button>
